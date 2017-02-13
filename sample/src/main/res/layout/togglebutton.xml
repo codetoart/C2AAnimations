@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom_color="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/transitions_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#ebeff1">
+    <com.android.codetoart.c2aanimations.widget.SwitchButtonView android:id="@+id/mySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:transitionName="@string/button1"
+        custom_color:color1="@color/white"
+        custom_color:color2="@color/dark_blue"/>
+</LinearLayout>
