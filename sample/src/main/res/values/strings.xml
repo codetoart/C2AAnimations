@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">SampleAnimations</string>
-    <string name="button1">Button 1</string>
+    <string name="shared_transition">sharedTransition</string>
+
+    <string-array name="animation_list">
+        <item>Switch Button</item>
+        <item>Loading Button</item>
+    </string-array>
 </resources>

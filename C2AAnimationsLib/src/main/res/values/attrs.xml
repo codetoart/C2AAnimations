@@ -5,4 +5,14 @@
         <attr name="color1" format="reference" />
         <attr name="color2" format="reference" />
     </declare-styleable>
+    <declare-styleable name="C2AAnimationLoadingButton">
+        <attr name="c2a_primaryColor" format="reference|color" />
+        <attr name="c2a_primaryDarkColor" format="reference|color" />
+        <attr name="c2a_loaderColor" format="reference|color" />
+        <attr name="c2a_buttonText" format="reference|string" />
+        <attr name="c2a_textColor" format="reference|string" />
+        <attr name="c2a_textSize" format="dimension" />
+        <attr name="c2a_resetAfterFailed" format="boolean" />
+        <attr name="c2a_buttonRippleAlpha" format="float" />
+    </declare-styleable>
 </resources>

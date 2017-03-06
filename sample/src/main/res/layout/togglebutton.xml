@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:transitionName="@string/button1"
+        android:transitionName="@string/shared_transition"
         custom_color:color1="@color/white"
         custom_color:color2="@color/dark_blue"/>
 </LinearLayout>

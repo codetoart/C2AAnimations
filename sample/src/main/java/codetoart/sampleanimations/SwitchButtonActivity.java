@@ -3,7 +3,7 @@ package codetoart.sampleanimations;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class Button1Activity extends AppCompatActivity {
+public class SwitchButtonActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

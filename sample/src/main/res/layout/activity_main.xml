@@ -1,17 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/transitions_container"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
-    <Button
-        android:id="@+id/toggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/button1"
-        android:background="@color/colorPrimary"
-        android:textColor="@android:color/white"
-        android:transitionName="@string/button1"/>
-</LinearLayout>
+    android:clipToPadding="false"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:transitionName="@string/shared_transition"/>
