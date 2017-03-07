@@ -24,10 +24,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
             if (mOnRecyclerItemClickListener != null) {
                 int itemPosition = getAdapterPosition();
-                mOnRecyclerItemClickListener.onItemClick(itemPosition);
+                mOnRecyclerItemClickListener.onItemClick(view, itemPosition);
             }
         }
     }
@@ -55,6 +55,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public interface OnRecyclerItemClick {
-        void onItemClick(int position);
+        void onItemClick(View view, int position);
     }
 }

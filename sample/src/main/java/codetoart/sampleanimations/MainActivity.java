@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
+    Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             String[] animationArray = getResources().getStringArray(R.array.animation_list);
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerAdapter.OnRecyclerItemClick onRecyclerItemClick =
             new RecyclerAdapter.OnRecyclerItemClick() {
                 @Override
-                public void onItemClick(int position) {
+                public void onItemClick(View view, int position) {
                     Intent intent = null;
                     switch (position) {
                         case 0:
@@ -54,11 +59,9 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (intent != null){
-                        String transitionName = getString(R.string.shared_transition);
-
-                        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, mRecyclerView, transitionName);
+                        String transitionName = getString(R.string.shared_transition_title);
+                        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, view, transitionName);
                         startActivity(intent, transitionActivityOptions.toBundle());
-                        //startActivity(intent);
                     }
                 }
             };
