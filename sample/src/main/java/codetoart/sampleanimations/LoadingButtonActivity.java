@@ -1,27 +1,13 @@
 package codetoart.sampleanimations;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
-import android.support.v7.app.AppCompatActivity;
+import android.animation.AnimatorInflater;
+import android.animation.StateListAnimator;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.animation.Interpolator;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.android.codetoart.c2aanimations.widget.C2AAnimationLoadingButton;
 
@@ -29,7 +15,7 @@ public class LoadingButtonActivity extends AppCompatActivity {
 
     private EditText mEditUsername, mEditPassword;
     private C2AAnimationLoadingButton mButton;
-
+    private LinearLayout mRootLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +27,7 @@ public class LoadingButtonActivity extends AppCompatActivity {
     private void initView() {
         mEditUsername = (EditText) findViewById(R.id.edit_username);
         mEditPassword = (EditText) findViewById(R.id.edit_password);
+        mRootLayout = (LinearLayout) findViewById(R.id.activity_loading_button);
         mButton = (C2AAnimationLoadingButton) findViewById(R.id.button_login);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +39,14 @@ public class LoadingButtonActivity extends AppCompatActivity {
                         String username = mEditUsername.getText().toString();
                         String password = mEditPassword.getText().toString();
                         if (isValid(username, password)) {
-                            mButton.reset();
-                            finish();
+                            StateListAnimator stateListAnimator = AnimatorInflater.loadStateListAnimator(
+                                    LoadingButtonActivity.this, R.animator.raise);
+                            mButton.loadingSuccess(new C2AAnimationLoadingButton.AnimationSuccess() {
+                                @Override
+                                public void success() {
+                                    finish();
+                                }
+                            });
                         } else
                             mButton.loadingFail();
                     }

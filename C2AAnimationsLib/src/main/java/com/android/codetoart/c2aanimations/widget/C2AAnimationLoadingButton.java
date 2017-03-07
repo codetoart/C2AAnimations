@@ -1,7 +1,9 @@
 package com.android.codetoart.c2aanimations.widget;
 
 import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.animation.StateListAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -254,11 +256,11 @@ public class C2AAnimationLoadingButton extends View {
     /**
      * loading data successful
      */
-    public void loadingSuccess() {
+    public void loadingSuccess(AnimationSuccess listener) {
         if (mLoadingAnimator != null && mLoadingAnimator.isRunning()) {
             mLoadingAnimator.end();
             mCurrentState = STATE_STOP_LOADING;
-            playSuccessAnimation();
+            playSuccessAnimation(listener);
         }
     }
 
@@ -283,10 +285,10 @@ public class C2AAnimationLoadingButton extends View {
     /**
      * reset view to Button with animation
      */
-    public void reset() {
+    public void reset(View view, StateListAnimator animator) {
 
         if (mCurrentState == STATE_ANIMATION_SUCCESS) {
-            scaleSuccessPath();
+            scaleSuccessPath(view, animator);
         }
 
         if (mCurrentState == STATE_ANIMATION_FAILED) {
@@ -520,7 +522,7 @@ public class C2AAnimationLoadingButton extends View {
         set.start();
     }
 
-    private void playSuccessAnimation() {
+    private void playSuccessAnimation(final AnimationSuccess listener) {
 
         createSuccessPath();
 
@@ -558,6 +560,7 @@ public class C2AAnimationLoadingButton extends View {
         set.addListener(new AnimatorEndListener() {
             @Override
             public void onAnimationEnd(Animator animator) {
+                listener.success();
                 if (mAnimationEndListener != null) {
                     mAnimationEndListener.onAnimationEnd(AnimationType.SUCCESSFUL);
                 }
@@ -658,7 +661,7 @@ public class C2AAnimationLoadingButton extends View {
         animator.start();
     }
 
-    private void scaleSuccessPath() {
+    private void scaleSuccessPath(final View view, final StateListAnimator stateListAnimator) {
         final Matrix scaleMatrix = new Matrix();
         ValueAnimator scaleAnimator = ValueAnimator.ofFloat(1.0f, 0.0f);
         scaleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -752,5 +755,9 @@ public class C2AAnimationLoadingButton extends View {
 
     public interface AnimationEndListener {
         void onAnimationEnd(AnimationType animationType);
+    }
+
+    public interface AnimationSuccess{
+        void success();
     }
 }

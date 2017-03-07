@@ -40,8 +40,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.support_simple_spinner_dropdown_item, parent, false);
-        return new ViewHolder((TextView) v.findViewById(android.R.id.text1));
+                .inflate(R.layout.row_text, parent, false);
+        return new ViewHolder((TextView) v.findViewById(R.id.text));
     }
 
     @Override
